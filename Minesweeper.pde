@@ -17,7 +17,7 @@ void setup(){
   for (int i = 0; i < tiles.length; i++){ //fill the grid with tiles
     for (int j = 0; j < tiles[i].length; j++){
       tiles[i][j]=(new Tile(i*20, j*20));
-      if (tiles[i][j].hasMine()){totalMines++;} //counts total mines for wincondition
+      if (tiles[i][j].getHasMine()){totalMines++;} //counts total mines for wincondition
     }
   }
   for (int r = 0; r < tiles.length; r++){ //count each tile's minesNear and storeInVar
@@ -88,10 +88,10 @@ int countmines(int r, int c){
   try{ //catch error that happens for some reason
   for (int i = r-1; i < r+2; i++){
     for (int j = c-1; j < c+2; j++){
-      if (validSpot(tiles,i,j)){if (tiles[i][j].hasMine()){mines++;}}
+      if (validSpot(tiles,i,j)){if (tiles[i][j].getHasMine()){mines++;}}
     }
   }
-  if(tiles[r][c].hasMine()){mines--;} //subtract self
+  if(tiles[r][c].getHasMine()){mines--;} //subtract self
   } catch (Exception NullPointerException){}
   return mines;
 }
@@ -114,7 +114,7 @@ void reGen(){
   for (int i = 0; i < tiles.length; i++){ //reroll all mines
     for (int j = 0; j < tiles[i].length; j++){
       tiles[i][j].reMine();
-      if (tiles[i][j].hasMine()){totalMines++;} //counts total mines for wincondition
+      if (tiles[i][j].getHasMine()){totalMines++;} //counts total mines for wincondition
     }
   }
   for (int r = 0; r < tiles.length; r++){ //count each tile's minesNear and storeInVar
@@ -232,7 +232,7 @@ class Tile{
     return y;
   }
   
-  public boolean hasMine(){
+  public boolean getHasMine(){
     return hasMine;
   }
   
@@ -344,7 +344,7 @@ class resetButton extends UIButton{
   for (int i = 0; i < tiles.length; i++){ //fill the grid with tiles
     for (int j = 0; j < tiles.length; j++){
       tiles[i][j]=(new Tile(i*20, j*20));
-      if (tiles[i][j].hasMine()){totalMines++;} //counts total mines for wincondition
+      if (tiles[i][j].getHasMine()){totalMines++;} //counts total mines for wincondition
     }
   }
   for (int r = 0; r < tiles.length; r++){ //count each tile's minesNear and storeInVar
