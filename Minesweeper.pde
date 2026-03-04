@@ -201,7 +201,7 @@ class Tile{
   
   public void popMine(){
     while (!zeroGen){
-      if (minesNear !=0 || hasMine){  System.out.println(minesNear);reGen();} else{zeroGen = true;}
+      if (minesNear !=0 || hasMine){reGen();} else{zeroGen = true;} //zerogeneration
     }
     if(!popped){
       popped = true;
