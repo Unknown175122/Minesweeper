@@ -1,6 +1,9 @@
 Tile [] [] tiles = new Tile[10][10];//24x20 18x14 10x8
 resetButton tron = new resetButton(410,25,75,25);
 difficultyButton ez = new difficultyButton(410,50,75,25, 0);
+difficultyButton mid = new difficultyButton(410,75,75,25, 1);
+difficultyButton hard = new difficultyButton(410,100,75,25, 2);
+difficultyButton[] buttons = {ez, mid, hard};
 boolean gameOver = false;
 int totalMines, tilesPopped; //wincondition variables
 boolean zeroGen;
@@ -26,6 +29,7 @@ void setup(){
 }
 
 void draw(){
+  background(200);
   if (!gameOver){
     for (int i = 0; i < tiles.length; i++){ //show tiles
       for (int j = 0; j < tiles[i].length;j++){
@@ -58,7 +62,9 @@ void draw(){
     }
   }
       tron.show();
-      ez.show();
+      for (int i = 0; i < buttons.length; i++){
+        buttons[i].show();
+      }
 }
 
 void mousePressed(){
@@ -69,6 +75,11 @@ void mousePressed(){
   }
   tron.detectColl();
   tron.clicked();
+  for (int i = 0; i < buttons.length; i++){
+     buttons[i].detectColl();
+     buttons[i].setDiff();
+     buttons[i].clicked();
+  }
 }
 
 int countmines(int r, int c){
@@ -355,9 +366,30 @@ class difficultyButton extends resetButton{
     w = wid;
     h = hei;
     d = diff;
-    c = #00FF00;
     icon = false;
-    str = "Easy";
+    if (d == 0){
+      c = #00FF00;
+      str = "Easy";
+    } else if (d == 1){
+      c = #FFFF00;
+      str = "Medium";
+    } else {
+      c = #ff0000;
+      str = "Hard";
+      
+    }
+  }
+  
+  public void setDiff(){
+    if(isClicked){
+      if (d == 0){
+        tiles = new Tile[10][10];
+      } else if (d == 1){
+        tiles = new Tile[15][15];
+      } else {
+        tiles = new Tile[20][20];
+      }
+    }
   }
   
   
