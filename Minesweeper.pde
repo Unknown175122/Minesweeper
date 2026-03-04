@@ -64,6 +64,7 @@ void draw(){
       for (int i = 0; i < buttons.length; i++){
         buttons[i].show();
       }
+      text(second(),410, 125);
 }
 
 void mousePressed(){
