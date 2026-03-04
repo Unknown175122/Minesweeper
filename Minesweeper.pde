@@ -29,7 +29,6 @@ void setup(){
 }
 
 void draw(){
-  background(200);
   if (!gameOver){
     for (int i = 0; i < tiles.length; i++){ //show tiles
       for (int j = 0; j < tiles[i].length;j++){
@@ -337,6 +336,7 @@ class resetButton extends UIButton{
   }
   
   public void reset(){
+    background(200);
     tilesPopped = 0;
     totalMines = 0;
     zeroGen=false;
