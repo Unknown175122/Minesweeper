@@ -71,7 +71,7 @@ void draw(){
       if(zeroGen){
         float d = (millis()-(float)timer)/1000;
         int minnum = 0;
-        if(d >60){minnum++;d-=60;}
+        while(d >60){minnum++;d-=60;}
         text(minnum + ":" + str(d),410, 150);
       }
 }
