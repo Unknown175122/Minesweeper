@@ -316,7 +316,7 @@ class resetButton extends UIButton{
     if (isClicked){
       c = #FF5050;
       fill(200,50,50);
-      stroke(1);
+      stroke(0,0,0);
       ellipse(x+w/4,y+h/2,3*h/4,3*h/4);
       fill(255,50,50);
       ellipse(x+w/4,y+h/2,h/2,h/2);
