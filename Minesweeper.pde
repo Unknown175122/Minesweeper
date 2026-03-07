@@ -4,9 +4,9 @@ difficultyButton ez = new difficultyButton(410,50,75,25, 0);
 difficultyButton mid = new difficultyButton(410,75,75,25, 1);
 difficultyButton hard = new difficultyButton(410,100,75,25, 2);
 difficultyButton[] buttons = {ez, mid, hard};
-boolean gameOver = false;
+boolean gameOver, zeroGen = false;
 int totalMines, tilesPopped; //wincondition variables
-boolean zeroGen;
+double timer;
 PFont font;
 void setup(){
   size(500,400);
@@ -64,7 +64,16 @@ void draw(){
       for (int i = 0; i < buttons.length; i++){
         buttons[i].show();
       }
-      text(second(),410, 125);
+      fill(205);
+      noStroke();
+      rect(410,135,10000,20);
+      fill(0);
+      if(zeroGen){
+        float d = (millis()-(float)timer)/1000;
+        int minnum = 0;
+        if(d >60){minnum++;d-=60;}
+        text(minnum + ":" + str(d),410, 150);
+      }
 }
 
 void mousePressed(){
@@ -149,6 +158,7 @@ class Tile{
   }
   
   public void show(){//draw color depending on state its in
+    stroke(1);
     if (!gameOver){
       if (!popped){
         fill(140, 200, 120);
@@ -212,7 +222,8 @@ class Tile{
   
   public void popMine(){
     while (!zeroGen){
-      if (minesNear !=0 || hasMine){reGen();} else{zeroGen = true;} //zerogeneration
+      if (minesNear !=0 || hasMine){reGen();} 
+      else{zeroGen = true;timer=millis();} //zerogeneration + settimer
     }
     if(!popped){
       popped = true;
@@ -305,6 +316,7 @@ class resetButton extends UIButton{
     if (isClicked){
       c = #FF5050;
       fill(200,50,50);
+      stroke(1);
       ellipse(x+w/4,y+h/2,3*h/4,3*h/4);
       fill(255,50,50);
       ellipse(x+w/4,y+h/2,h/2,h/2);
@@ -395,6 +407,7 @@ class difficultyButton extends resetButton{
   
   
 }
+
 
 
 
